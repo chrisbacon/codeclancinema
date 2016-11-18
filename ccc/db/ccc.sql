@@ -5,13 +5,13 @@ DROP TABLE customers;
 CREATE TABLE customers (
 	id SERIAL8 primary key,
 	name VARCHAR(255),
-	funds INT8
+	funds NUMERIC
 );
 
 CREATE TABLE films (
 	id SERIAL8 primary key,
 	title VARCHAR(255),
-	price INT2
+	price NUMERIC
 );
 
 CREATE TABLE tickets (
