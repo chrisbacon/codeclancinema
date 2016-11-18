@@ -57,6 +57,6 @@ class Customer
 
 		result = SqlRunner.run(sql).first
 
-		return Customer.new(result)
+		return Customer.new(result) if result.length>0
 	end
 end

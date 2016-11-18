@@ -34,5 +34,26 @@ class Film
 
 		SqlRunner.run(sql)
 	end
+
+	def delete()
+		sql = "
+		DELETE FROM films
+		WHERE id = #{@id}
+		;"
+
+		SqlRunner.run(sql)
+	end
+
+	def self.get_by_id(id)
+		sql = "
+		SELECT * 
+		FROM films
+		WHERE id = #{id}
+		;"
+
+		result = SqlRunner.run(sql).first
+
+		return Film.new(result) if result.length>0
+	end
 	
 end
