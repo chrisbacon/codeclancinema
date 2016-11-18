@@ -1,7 +1,8 @@
 require_relative('../db/sql_runner.rb')
 
 class Film
-	attr_reader :title, :price, :id
+	attr_reader :title, :id
+	attr_accessor :price
 
 	def initialize( options )
 		@title = options['title']
@@ -21,6 +22,17 @@ class Film
 		result = SqlRunner.run(sql)
 
 		@id = result[0]['id'].to_i 
+	end
+
+	def update()
+		sql = "
+		UPDATE films
+		SET (title, price)
+		= ('#{@title}', #{@price})
+		WHERE id = #{@id}
+		;"
+
+		SqlRunner.run(sql)
 	end
 	
 end
