@@ -27,6 +27,17 @@ class Customer
 		return new_ticket
 	end
 
+	def number_of_tickets_bought()
+		sql = "
+		SELECT * FROM tickets
+		WHERE customer_id = #{@id}
+		;"
+
+		result = SqlRunner.run(sql)
+
+		return result.count
+	end
+
 	def save()
 		sql = "
 		INSERT INTO customers

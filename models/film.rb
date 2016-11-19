@@ -1,8 +1,7 @@
 require_relative('../db/sql_runner.rb')
 
 class Film
-	attr_reader :title, :id
-	attr_accessor :price
+	attr_reader :title, :id, :price
 
 	def initialize( options )
 		@title = options['title']
@@ -22,6 +21,17 @@ class Film
 		result = SqlRunner.run(sql)
 
 		@id = result[0]['id'].to_i 
+	end
+
+	def number_of_tickets_sold()
+		sql = "
+		SELECT * FROM tickets
+		where film_id = #{@id}
+		;"
+
+		result = SqlRunner.run(sql)
+
+		return result.count
 	end
 
 	def update()
