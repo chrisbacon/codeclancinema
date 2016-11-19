@@ -17,10 +17,7 @@ film1 = Film.new({
 
 film1.save()
 
-ticket1 = Ticket.new({
-	'film_id' => film1.id,
-	'customer_id' => cust1.id
-	})
+ticket1 = cust1.buy_ticket(film1)
 
 binding.pry
 nil

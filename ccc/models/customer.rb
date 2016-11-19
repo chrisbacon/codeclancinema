@@ -14,6 +14,19 @@ class Customer
 		return @funds > price
 	end
 
+	def buy_ticket(film)
+		new_ticket = Ticket.new({
+			"customer_id" => @id,
+			"film_id" => film.id
+			})
+		new_ticket.save()
+
+		@funds -= film.price
+		update()
+
+		return new_ticket
+	end
+
 	def save()
 		sql = "
 		INSERT INTO customers
